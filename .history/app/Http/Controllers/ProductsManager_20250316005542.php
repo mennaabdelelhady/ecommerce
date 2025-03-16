@@ -5,10 +5,6 @@ use App\Models\Products;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Orders;
-
-use App\Models\Users;
-
-
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\DB;

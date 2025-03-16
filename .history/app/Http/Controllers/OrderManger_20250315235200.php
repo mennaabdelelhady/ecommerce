@@ -8,6 +8,11 @@ class OrderManger extends Controller
 {
     function showCheckout()
     {
-        return view('order.checkout');
+        return view('checkout');
+    }
+
+    function checkoutPost(Request $request)
+    {
+
     }
 }
