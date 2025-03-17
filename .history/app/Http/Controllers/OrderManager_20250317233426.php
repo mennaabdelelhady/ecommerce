@@ -33,6 +33,9 @@ class OrderManager extends Controller
             'products.price'
         )
         ->where("cart.user_id",auth()->user()->id)
+        ->groupBy("cart.product_id",
+        'products.price'
+        )
         ->get();
 
         if($cartItems->isEmpty()){

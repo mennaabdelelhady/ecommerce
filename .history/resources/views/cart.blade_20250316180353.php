@@ -33,7 +33,7 @@
                 {{$cartItems->links()}}
             </div>
             <div>
-              <a class="btn btn-success" href="{{route('checkout.show')}}">Checkout</a>
+              <a class="btn btn-success" href="{{route('cart.show')}}">Checkout</a>
             </div>
         </section>
     </main>

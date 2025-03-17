@@ -26,13 +26,15 @@ class OrderManager extends Controller
 
         
         $cartItems = DB::table("cart")
-        ->join('products','cart.product_id','=','products.id')
+        ->join("products","cart.product_id","=","products.id")
         ->select(
             "cart.product_id",
-            "cart.quantity", // Use the actual quantity from the cart table
-            'products.price'
-        )
+        DB::raw("count (*) as quantity"),
+        'products.price')
         ->where("cart.user_id",auth()->user()->id)
+        ->groupBy('cart.product_id',
+        'products.price',
+        )
         ->get();
 
         if($cartItems->isEmpty()){
@@ -63,6 +65,6 @@ class OrderManager extends Controller
             return redirect(route('cart.show'))->with('success','Order placed successfully');
         }
 
-        return redirect(route('cart.show'))->with('error','Failed to place order');
+        return redirect('cart.show')->with('error','Failed to place order');
     }
 }

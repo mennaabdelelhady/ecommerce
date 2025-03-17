@@ -46,18 +46,18 @@ class ProductsManager extends Controller
         ->join("products","cart.product_id","=","products.id")
         ->select(
             "cart.product_id",
-            DB::raw("count(*) as quantity"),
-            'products.title',
-            'products.price',
-            'products.image',
-            'products.slug')
+            DB::raw("count(*)as quantity"),
+        'products.title',
+        'products.price',
+        'products.image',
+        'products.slug')
         ->where("cart.user_id",auth()->user()->id)
         ->groupBy(
             "cart.product_id",
             "products.title",
             "products.price",
-            'products.image',
-            'products.slug')
+        'products.image',
+        'products.slug')
         ->paginate(5);
 
         //return $cartItems;

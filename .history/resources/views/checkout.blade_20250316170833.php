@@ -6,12 +6,6 @@
 <main class="container" style="max-width: 900px">
     <section>
         <h2>Checkout</h2>
-        @if(session()->has("success"))
-        <div class="alert alert-success">{{ session()->get("success") }}</div>
-    @endif
-    @if(session()->has("error"))
-        <div class="alert alert-danger">{{ session("error") }}</div>
-    @endif
         <form action="{{route('checkout.post')}}" method="POST">
             @csrf
             <div class="mb-3">

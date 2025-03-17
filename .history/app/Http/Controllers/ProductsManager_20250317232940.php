@@ -46,7 +46,7 @@ class ProductsManager extends Controller
         ->join("products","cart.product_id","=","products.id")
         ->select(
             "cart.product_id",
-            DB::raw("count(*) as quantity"),
+            DB::raw("count(*)as quantity"),
             'products.title',
             'products.price',
             'products.image',
@@ -56,8 +56,8 @@ class ProductsManager extends Controller
             "cart.product_id",
             "products.title",
             "products.price",
-            'products.image',
-            'products.slug')
+        'products.image',
+        'products.slug')
         ->paginate(5);
 
         //return $cartItems;

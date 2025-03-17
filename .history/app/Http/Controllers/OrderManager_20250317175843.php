@@ -29,10 +29,12 @@ class OrderManager extends Controller
         ->join('products','cart.product_id','=','products.id')
         ->select(
             "cart.product_id",
-            "cart.quantity", // Use the actual quantity from the cart table
-            'products.price'
+        DB::raw('count (*) as quantity'),
+        'products.price')
+        ->where('cart.user_id',auth()->user()->id)
+        ->groupBy('cart.product_id',
+        'products.price',
         )
-        ->where("cart.user_id",auth()->user()->id)
         ->get();
 
         if($cartItems->isEmpty()){
