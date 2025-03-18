@@ -47,6 +47,7 @@ class OrderManager extends Controller
             "cart.quantity",
             'products.price',
             'products.title'
+
         )
         ->get();
 

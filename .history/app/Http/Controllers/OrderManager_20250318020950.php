@@ -27,11 +27,11 @@ class OrderManager extends Controller
     {
 
         $request->validate([
-            'address' => 'required|string|max:255',
-            'pincode' => 'required|numeric',
-            'phone' => 'required|string|max:15',
+            'address' => 'required',
+            'pincode' => 'required',
+            'phone' => 'required',
         ]);
-        
+
         
         $cartItems = DB::table("cart")
         ->join('products','cart.product_id','=','products.id')
@@ -44,9 +44,7 @@ class OrderManager extends Controller
         ->where("cart.user_id",auth()->user()->id)
         ->groupBy(
             "cart.product_id",
-            "cart.quantity",
-            'products.price',
-            'products.title'
+            'products.price'
         )
         ->get();
 

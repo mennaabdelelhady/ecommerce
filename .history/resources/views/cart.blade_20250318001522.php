@@ -20,7 +20,7 @@
                           <div class="col-md-8">
                             <div class="card-body">
                               <h5 class="card-title"><a href="{{route("products.details",$cart->slug)}}">{{ $cart->title }}</a> Card title</h5>
-                              <p class="card-text">Price: ${{$cart->price}} | Quantity: {{$cart->quantity}}</p>
+                              <p class="card-text">Price: ${{$cart->price}} | quantity: {{$cart->quantity}}</p>
                             </div>
                           </div>
                         </div>

@@ -44,9 +44,7 @@ class OrderManager extends Controller
         ->where("cart.user_id",auth()->user()->id)
         ->groupBy(
             "cart.product_id",
-            "cart.quantity",
-            'products.price',
-            'products.title'
+            'products.price'
         )
         ->get();
 

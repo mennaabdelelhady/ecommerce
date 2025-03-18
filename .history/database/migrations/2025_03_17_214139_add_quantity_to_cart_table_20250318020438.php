@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('cart', function (Blueprint $table) {
-            $table->unsignedInteger('quantity')->default(1);
-        });
+        if (!Schema::hasColumn('cart', 'quantity')) {
+            Schema::table('cart', function (Blueprint $table) {
+                $table->unsignedInteger('quantity')->default(1);
+            });
+        }
     }
 
     /**
