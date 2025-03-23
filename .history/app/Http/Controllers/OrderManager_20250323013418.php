@@ -117,34 +117,7 @@ class OrderManager extends Controller
 
     function webhookStripe(Request $request)
     {
-        $endpointSecret = config('app.STRIPE_WEBHOOK_SECRET'); 
-        $payload = $request->getContent();
-        $sigHeader = $request->header('Stripe-Signature');
-        
-        try{
-            $event = Webhook::constructEvent(
-                $payload, $sig_header, $endpoint_secret
-            );
-
-        } catch (UnexpectedValueException $e) {
-            return response()->json(['error'=>'invalid payload'],400);
-            exit();
-        } catch (SignatureVerificationException $e) {
-            return response()->json(['error'=>'invalid payload'],400);
-            exit();
-        }
-        if ($event->type == 'checkout.session.completed') {
-            $session = $event->data->object;
-            $orderId = $session->metadata->order_id;
-            $paymentId = $session->payment_intent;
-            $order = Orders::find($orderId);
-            if ($order){
-                $order->payment_id = $paymentId;
-                $order->payment_status = "completed";
-                $order->save();
-            }
-        }
-        return response()->json(['status'=>'success'],200);
-
+        $endpoint_secret = config
+        ('app.STRIPE_WEBHOOK_SECRET');  
     }
 }
