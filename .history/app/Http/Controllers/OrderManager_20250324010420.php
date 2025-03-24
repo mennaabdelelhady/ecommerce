@@ -147,28 +147,4 @@ class OrderManager extends Controller
         return response()->json(['status'=>'success'],200);
 
     }
-    function orderHistory()
-    {
-        $orders = Orders::where("user_id",auth()->user()->id)->get();
-        
-        $orders = $orders->map(function($order){
-            $productIds = json_decode($order->product_id,true);
-            $quantities = json_decode($order->quantity,true);
-
-            $products = Products::whereIn('id',$productIds)->get();
-
-            $order->product_details = $products->map(function($product) 
-            use ($quantities,$productIds){
-                $index = array_search($product->id,$productIds);
-                return [
-                    'name' => $product->title,
-                    'quantity' => $quantities[$index] ?? 0,
-                    'price' => $product->price
-
-                ];
-            });
-            return $order;
-        });
-        return $orders;
-    }
 }

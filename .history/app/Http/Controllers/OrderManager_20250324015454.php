@@ -149,7 +149,7 @@ class OrderManager extends Controller
     }
     function orderHistory()
     {
-        $orders = Orders::where("user_id",auth()->user()->id)->get();
+        $orders = Orders::where('user_id',auth()->user()->id)->get();
         
         $orders = $orders->map(function($order){
             $productIds = json_decode($order->product_id,true);

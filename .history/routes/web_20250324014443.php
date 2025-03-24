@@ -18,8 +18,8 @@ Route::middleware("auth")->group(function(){
     Route::get("/checkout",[OrderManager::class,"showCheckout"])->name("checkout.show");
     Route::post("/checkout",[OrderManager::class,"checkoutPost"])->name("checkout.post");
     Route::get("/payment/success/{order_id}",[OrderManager::class,"paymentSuccess"])->name("payment.success");
-    Route::get("/payment/error/",[OrderManager::class,"paymentError"])->name("payment.error");
-    Route::get("/order/history",[OrderManager::class,"orderHistory"])->name("order.history");
+    Route::get("/order/history",[OrderManager::class,"paymentError"])->name("payment.error");
+    Route::get("/payment/error/",[OrderManager::class,"orderHistory"])->name("order.history");
 
 
 
